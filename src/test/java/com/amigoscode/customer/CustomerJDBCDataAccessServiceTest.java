@@ -3,6 +3,7 @@ package com.amigoscode.customer;
 import com.amigoscode.AbstractTestcontainers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 
 import java.util.List;
 import java.util.Optional;
