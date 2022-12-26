@@ -12,12 +12,17 @@
     </parent>
 
     <groupId>org.amigoscode</groupId>
-    <artifactId>spring-boot-example</artifactId>
+    <artifactId>amigoscode-api</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <organization>
+        <name>amigoscode</name>
+        <url>https://amigoscode.com</url>
+    </organization>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <docker.username>amigoscode</docker.username>
     </properties>
 
     <dependencies>
@@ -151,6 +156,32 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <from>
+                        <image>eclipse-temurin:17</image>
+                        <platforms>
+                            <platform>
+                                <architecture>arm64</architecture>
+                                <os>linux</os>
+                            </platform>
+                            <platform>
+                                <architecture>amd64</architecture>
+                                <os>linux</os>
+                            </platform>
+                        </platforms>
+                    </from>
+                    <to>
+                        <image>docker.io/${organization.name}/${project.artifactId}:${project.version}</image>
+                        <tags>
+                            <tag>latest</tag>
+                        </tags>
+                    </to>
+                </configuration>
             </plugin>
         </plugins>
     </build>
