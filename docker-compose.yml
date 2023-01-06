@@ -5,6 +5,7 @@ services:
     environment:
       POSTGRES_USER: amigoscode
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: customer
       PGDATA: /data/postgres
     volumes:
       - db:/data/postgres
@@ -24,6 +25,15 @@ services:
       - db
     depends_on:
       - db
+    restart: unless-stopped
+  amigoscode-react:
+    container_name: amigoscode-react
+    build:
+      context: frontend/react
+    ports:
+      - "3000:5173"
+    depends_on:
+      - amigoscode-api
     restart: unless-stopped
 
 networks:

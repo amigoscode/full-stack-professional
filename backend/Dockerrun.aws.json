@@ -3,12 +3,12 @@
   "containerDefinitions": [
     {
       "name": "amigoscode-api",
-      "image": "amigoscode/amigoscode-api:04.01.2023.01.13.30",
+      "image": "amigoscode/amigoscode-api:05.01.2023.23.53.28",
       "essential": true,
       "memory": 512,
       "portMappings": [
         {
-          "hostPort": 80,
+          "hostPort": 8080,
           "containerPort": 8080
         }
       ],
@@ -16,6 +16,18 @@
         {
           "name": "SPRING_DATASOURCE_URL",
           "value": "jdbc:postgresql://awseb-e-pz3ruhspne-stack-awsebrdsdatabase-tl3f2itqs83z.celswdmxhcr1.eu-west-1.rds.amazonaws.com:5432/customer"
+        }
+      ]
+    },
+    {
+      "name": "amigoscode-react",
+      "image": "amigoscode/amigoscode-react:06.01.2023.21.19.45",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 5173
         }
       ]
     }
