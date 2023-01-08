@@ -4,10 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 class CustomerJPADataAccessServiceTest {
@@ -52,8 +50,8 @@ class CustomerJPADataAccessServiceTest {
     void insertCustomer() {
         // Given
         Customer customer = new Customer(
-                1, "Ali", "ali@gmail.com", 2
-        );
+                1, "Ali", "ali@gmail.com", 2,
+                Gender.MALE);
 
         // When
         underTest.insertCustomer(customer);
@@ -102,8 +100,8 @@ class CustomerJPADataAccessServiceTest {
     void updateCustomer() {
         // Given
         Customer customer = new Customer(
-                1, "Ali", "ali@gmail.com", 2
-        );
+                1, "Ali", "ali@gmail.com", 2,
+                Gender.MALE);
 
         // When
         underTest.updateCustomer(customer);
