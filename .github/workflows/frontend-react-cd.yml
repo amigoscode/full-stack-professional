@@ -1,0 +1,97 @@
+name: CD - Deploy React Frontend
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - frontend/react/**
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend/react
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Slack commit message and sha
+        run: >
+          curl -X POST -H 'Content-type: application/json'
+          --data '{"text":":github: ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }} - ${{ github.event.head_commit.message }}"}' 
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Send Slack Message
+        run: >
+          curl -X POST -H 'Content-type: application/json'
+          --data '{"text":"Deployment started :progress_bar: :fingerscrossed:"}' 
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Set build number
+        id: build-number
+        run: echo "BUILD_NUMBER=$(date '+%d.%m.%Y.%H.%M.%S')" >> $GITHUB_OUTPUT
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+      - name: Docker Build and push
+        run: |
+          chmod +x ../../.ci/build-publish.sh
+          USERNAME=amigoscode \
+          REPO=amigoscode-react \
+          TAG=${{ steps.build-number.outputs.BUILD_NUMBER }} \
+          ../../.ci/build-publish.sh . \
+            --build-arg api_base_url=http://amigoscodeapi-env.eba-ymxutmev.eu-west-1.elasticbeanstalk.com:8080
+      - name: Send Slack Message
+        run: >
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":":docker: Image tag:${{steps.build-number.outputs.BUILD_NUMBER}} pushed to https://hub.docker.com/repository/docker/amigoscode/amigoscode-react"}' 
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Update Dockerrun.aws.json react image tag with new build number
+        run: |
+          echo "Dockerrun.aws.json before updating tag"
+          cat ../../Dockerrun.aws.json
+          sed -i -E 's_(amigoscode/amigoscode-react:)([^"]*)_\1'${{steps.build-number.outputs.BUILD_NUMBER}}'_' ../../Dockerrun.aws.json
+          echo "Dockerrun.aws.json after updating tag"
+          cat ../../Dockerrun.aws.json
+      - name: Send Slack Message
+        run: >
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":":aws: Starting deployment to Elastic Beanstalk"}' 
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ secrets.EB_APPLICATION_NAME }}
+          environment_name: ${{ secrets.EB_ENVIRONMENT_NAME }}
+          version_label: ${{ steps.build-number.outputs.BUILD_NUMBER }}
+          version_description: ${{ github.SHA }}
+          region: ${{ secrets.EB_REGION }}
+          deployment_package: Dockerrun.aws.json
+          wait_for_environment_recovery: 60
+      - name: Send Slack Message
+        run: >
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":":githubloading: Committing to repo https://github.com/amigoscode/spring-boot-full-stack/"}' 
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Commit and push Dockerrun.aws.json
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add ../../Dockerrun.aws.json
+          git commit -m "Update Dockerrun.aws.json docker image with new tag ${{ steps.build-number.outputs.BUILD_NUMBER }}"
+          git push
+      - name: Send Slack Message
+        run: >
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":"Deployment and commit completed :github-check-mark: :party_blob: - http://amigoscodeapi-env.eba-ymxutmev.eu-west-1.elasticbeanstalk.com/"}' 
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Send Slack Message
+        if: always()
+        run: >
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":"Job Status ${{ job.status }}"}' 
+          ${{ secrets.SLACK_WEBHOOK_URL }}
