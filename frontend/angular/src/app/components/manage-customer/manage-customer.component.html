@@ -1,0 +1,63 @@
+<div>
+  <h2>{{customer.id ? 'Update ' : 'Create new '}} customer</h2>
+  <div class="field">
+    <label for="firstname1">Name</label>
+    <input
+      [(ngModel)]="customer.name"
+      [autofocus]="true"
+      class="w-full"
+      id="firstname1"
+      pAutoFocus
+      pInputText
+      placeholder="Jane"
+      type="text"
+    >
+  </div>
+  <div class="field">
+    <label for="email">Email</label>
+    <input
+      [(ngModel)]="customer.email"
+      class="w-full"
+      id="email"
+      pInputText
+      placeholder="jane@amigoscode.com"
+      type="email"
+    >
+  </div>
+  <div class="field">
+    <label for="age">Age</label>
+    <input
+      [(ngModel)]="customer.age"
+      class="w-full"
+      id="age"
+      pInputText
+      placeholder="34"
+      type="number"
+    >
+  </div>
+  <div class="field">
+    <label for="gender">Gender</label>
+    <select
+      [(ngModel)]="customer.gender"
+      class="p-dropdown w-full custom-select"
+      id="gender"
+    >
+      <option value="">Select gender</option>
+      <option value="MALE">MALE</option>
+      <option value="FEMALE">FEMALE</option>
+    </select>
+  </div>
+  <button
+    [disabled]="!isCustomerValid"
+    (click)="onSaveCustomer()"
+    class="w-full"
+    label="Submit"
+    pButton
+  ></button>
+  <button
+    (click)="onCancel()"
+    class="p-button-outlined p-button-danger w-full mt-2"
+    label="Cancel"
+    pButton
+  ></button>
+</div>
