@@ -21,7 +21,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
     @Override
     public List<Customer> selectAllCustomers() {
         var sql = """
-                SELECT id, name, email, age, gender
+                SELECT id, username, password, name, email, age, gender
                 FROM customer
                 """;
 
@@ -31,7 +31,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
     @Override
     public Optional<Customer> selectCustomerById(Integer id) {
         var sql = """
-                SELECT id, name, email, age, gender
+                SELECT id, username, password, name, email, age, gender
                 FROM customer
                 WHERE id = ?
                 """;
@@ -43,11 +43,13 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
     @Override
     public void insertCustomer(Customer customer) {
         var sql = """
-                INSERT INTO customer(name, email, age, gender)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO customer(username, password, name, email, age, gender)
+                VALUES (?, ?, ?, ?, ?, ?)
                 """;
         int result = jdbcTemplate.update(
                 sql,
+                customer.getUsername(),
+                customer.getPassword(),
                 customer.getName(),
                 customer.getEmail(),
                 customer.getAge(),
@@ -118,5 +120,17 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
                     update.getId());
             System.out.println("update customer email result = " + result);
         }
+    }
+
+    @Override
+    public Optional<Customer> findCustomerByUsername(String username) {
+        var sql = """
+                SELECT id, username, password, name, email, age, gender
+                FROM customer
+                WHERE username = ?
+                """;
+        return jdbcTemplate.query(sql, customerRowMapper, username)
+                .stream()
+                .findFirst();
     }
 }

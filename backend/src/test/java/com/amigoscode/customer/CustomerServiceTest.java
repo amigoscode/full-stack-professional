@@ -9,8 +9,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -21,11 +23,13 @@ class CustomerServiceTest {
 
     @Mock
     private CustomerDao customerDao;
+    @Mock
+    private PasswordEncoder passwordEncoder;
     private CustomerService underTest;
 
     @BeforeEach
     void setUp() {
-        underTest = new CustomerService(customerDao);
+        underTest = new CustomerService(customerDao, passwordEncoder);
     }
 
     @Test
@@ -42,7 +46,7 @@ class CustomerServiceTest {
         // Given
         int id = 10;
         Customer customer = new Customer(
-                id, "Alex", "alex@gmail.com", 19,
+                id, "foobar", "amigoscode", "Alex", "alex@gmail.com", 19,
                 Gender.MALE);
         when(customerDao.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -75,6 +79,8 @@ class CustomerServiceTest {
         when(customerDao.existsCustomerWithEmail(email)).thenReturn(false);
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
+                UUID.randomUUID().toString(),
+                UUID.randomUUID().toString(),
                 "Alex", email, 19, Gender.MALE
         );
 
@@ -104,6 +110,8 @@ class CustomerServiceTest {
         when(customerDao.existsCustomerWithEmail(email)).thenReturn(true);
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
+                UUID.randomUUID().toString(),
+                UUID.randomUUID().toString(),
                 "Alex", email, 19, Gender.MALE
         );
 
@@ -151,7 +159,7 @@ class CustomerServiceTest {
         // Given
         int id = 10;
         Customer customer = new Customer(
-                id, "Alex", "alex@gmail.com", 19,
+                id, "foobar", "amigoscode", "Alex", "alex@gmail.com", 19,
                 Gender.MALE);
         when(customerDao.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -182,7 +190,7 @@ class CustomerServiceTest {
         // Given
         int id = 10;
         Customer customer = new Customer(
-                id, "Alex", "alex@gmail.com", 19,
+                id, "foobar", "amigoscode", "Alex", "alex@gmail.com", 19,
                 Gender.MALE);
         when(customerDao.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -209,7 +217,7 @@ class CustomerServiceTest {
         // Given
         int id = 10;
         Customer customer = new Customer(
-                id, "Alex", "alex@gmail.com", 19,
+                id, "foobar", "amigoscode", "Alex", "alex@gmail.com", 19,
                 Gender.MALE);
         when(customerDao.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -240,7 +248,7 @@ class CustomerServiceTest {
         // Given
         int id = 10;
         Customer customer = new Customer(
-                id, "Alex", "alex@gmail.com", 19,
+                id, "foobar", "amigoscode", "Alex", "alex@gmail.com", 19,
                 Gender.MALE);
         when(customerDao.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -267,7 +275,7 @@ class CustomerServiceTest {
         // Given
         int id = 10;
         Customer customer = new Customer(
-                id, "Alex", "alex@gmail.com", 19,
+                id, "foobar", "amigoscode", "Alex", "alex@gmail.com", 19,
                 Gender.MALE);
         when(customerDao.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -292,7 +300,7 @@ class CustomerServiceTest {
         // Given
         int id = 10;
         Customer customer = new Customer(
-                id, "Alex", "alex@gmail.com", 19,
+                id, "foobar", "amigoscode", "Alex", "alex@gmail.com", 19,
                 Gender.MALE);
         when(customerDao.selectCustomerById(id)).thenReturn(Optional.of(customer));
 

@@ -33,6 +33,8 @@ class CustomerRepositoryTest extends AbstractTestcontainers {
         // Given
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
         Customer customer = new Customer(
+                UUID.randomUUID().toString(),
+                UUID.randomUUID().toString(),
                 FAKER.name().fullName(),
                 email,
                 20,

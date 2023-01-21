@@ -4,6 +4,7 @@ import com.amigoscode.exception.DuplicateResourceException;
 import com.amigoscode.exception.RequestValidationException;
 import com.amigoscode.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +13,12 @@ import java.util.List;
 public class CustomerService {
 
     private final CustomerDao customerDao;
+    private final PasswordEncoder passwordEncoder;
 
-    public CustomerService(@Qualifier("jdbc") CustomerDao customerDao) {
+    public CustomerService(@Qualifier("jdbc") CustomerDao customerDao,
+                           PasswordEncoder passwordEncoder) {
         this.customerDao = customerDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<Customer> getAllCustomers() {
@@ -28,7 +32,7 @@ public class CustomerService {
                 ));
     }
 
-    public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
+    public String addCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
         // check if email exists
         String email = customerRegistrationRequest.email();
         if (customerDao.existsCustomerWithEmail(email)) {
@@ -39,12 +43,16 @@ public class CustomerService {
 
         // add
         Customer customer = new Customer(
+                customerRegistrationRequest.username(),
+                passwordEncoder.encode(customerRegistrationRequest.password()),
                 customerRegistrationRequest.name(),
                 customerRegistrationRequest.email(),
                 customerRegistrationRequest.age(),
                 customerRegistrationRequest.gender());
 
         customerDao.insertCustomer(customer);
+
+        return customerRegistrationRequest.username();
     }
 
     public void deleteCustomerById(Integer customerId) {
