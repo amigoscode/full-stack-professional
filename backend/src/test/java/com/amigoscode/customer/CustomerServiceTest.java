@@ -136,7 +136,6 @@ class CustomerServiceTest {
 
         // When
         underTest.deleteCustomerById(id);
-
         // Then
         verify(customerDao).deleteCustomerById(id);
     }

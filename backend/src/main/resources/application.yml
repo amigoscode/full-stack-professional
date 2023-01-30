@@ -6,6 +6,8 @@ server:
 cors:
   allowed-origins: "*"
   allowed-methods: "*"
+  allowed-headers: "*"
+  exposed-headers: "*"
 
 spring:
   datasource:
