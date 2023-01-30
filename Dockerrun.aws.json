@@ -15,7 +15,7 @@
     },
     {
       "name": "amigoscode-api",
-      "image": "amigoscode/amigoscode-api:30.01.2023.15.06.08",
+      "image": "amigoscode/amigoscode-api:30.01.2023.15.11.08",
       "essential": true,
       "memory": 512,
       "portMappings": [
