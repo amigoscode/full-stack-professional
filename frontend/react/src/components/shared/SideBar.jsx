@@ -9,7 +9,6 @@ import {
     HStack,
     Icon,
     IconButton,
-    Link,
     Menu,
     MenuButton,
     MenuDivider,
@@ -32,6 +31,7 @@ import {
     FiStar,
     FiTrendingUp
 } from 'react-icons/fi';
+import {useAuth} from "../context/AuthContext.jsx";
 
 const LinkItems = [
     {name: 'Home', icon: FiHome},
@@ -42,6 +42,7 @@ const LinkItems = [
 ];
 
 export default function SidebarWithHeader({children}) {
+
     const {isOpen, onOpen, onClose} = useDisclosure();
     return (
         <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
@@ -134,6 +135,7 @@ const NavItem = ({icon, children, ...rest}) => {
 };
 
 const MobileNav = ({onOpen, ...rest}) => {
+    const { logout } = useAuth();
     return (
         <Flex
             ml={{base: 0, md: 60}}
@@ -203,7 +205,7 @@ const MobileNav = ({onOpen, ...rest}) => {
                             <MenuItem>Settings</MenuItem>
                             <MenuItem>Billing</MenuItem>
                             <MenuDivider/>
-                            <MenuItem>Sign out</MenuItem>
+                            <MenuItem onClick={() => logout()}>Sign out</MenuItem>
                         </MenuList>
                     </Menu>
                 </Flex>

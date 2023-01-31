@@ -70,7 +70,7 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                 })}
                 onSubmit={(customer, {setSubmitting}) => {
                     setSubmitting(true);
-                    saveCustomer(customer)
+                    saveCustomer({...customer, password: "lololo"})
                         .then(res => {
                             console.log(res);
                             successNotification(
@@ -79,13 +79,13 @@ const CreateCustomerForm = ({ fetchCustomers }) => {
                             )
                             fetchCustomers();
                         }).catch(err => {
-                            console.log(err);
-                            errorNotification(
-                                err.code,
-                                err.response.data.message
-                            )
+                        console.log(err);
+                        errorNotification(
+                            err.code,
+                            err.response.data.message
+                        )
                     }).finally(() => {
-                         setSubmitting(false);
+                        setSubmitting(false);
                     })
                 }}
             >
