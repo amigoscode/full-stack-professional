@@ -25,7 +25,7 @@ jobs:
       - name: Send Slack Message
         run: >
           curl -X POST -H 'Content-type: application/json'
-          --data '{"text":"Deployment started :progress_bar: :fingerscrossed:"}' 
+          --data '{"text":":react: Deployment started :progress_bar: :fingerscrossed:"}' 
           ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Set build number
         id: build-number

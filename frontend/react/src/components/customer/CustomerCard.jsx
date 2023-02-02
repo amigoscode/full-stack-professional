@@ -16,9 +16,9 @@ import {
 } from '@chakra-ui/react';
 
 import {useRef} from 'react'
-import {deleteCustomer} from "../services/client.js";
-import {errorNotification, successNotification} from "../services/notification.js";
-import UpdateCustomerDrawer from "./customer/UpdateCustomerDrawer.jsx";
+import {deleteCustomer} from "../../services/client.js";
+import {errorNotification, successNotification} from "../../services/notification.js";
+import UpdateCustomerDrawer from "./UpdateCustomerDrawer.jsx";
 
 export default function CardWithImage({id, name, email, age, gender, imageNumber, fetchCustomers}) {
     const randomUserGender = gender === "MALE" ? "men" : "women";
