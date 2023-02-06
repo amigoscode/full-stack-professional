@@ -2,32 +2,20 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
-      "name": "amigoscode-react",
-      "image": "amigoscode/amigoscode-react:02.02.2023.21.54.20",
-      "essential": true,
-      "memory": 256,
-      "portMappings": [
-        {
-          "hostPort": 80,
-          "containerPort": 5173
-        }
-      ]
-    },
-    {
       "name": "amigoscode-api",
       "image": "amigoscode/amigoscode-api:30.01.2023.15.11.08",
       "essential": true,
       "memory": 512,
       "portMappings": [
         {
-          "hostPort": 8080,
+          "hostPort": 80,
           "containerPort": 8080
         }
       ],
       "environment": [
         {
           "name": "SPRING_DATASOURCE_URL",
-          "value": "jdbc:postgresql://awseb-e-pz3ruhspne-stack-awsebrdsdatabase-jcignpe7lcdq.celswdmxhcr1.eu-west-1.rds.amazonaws.com:5432/customer"
+          "value": "jdbc:postgresql://awseb-e-ezjnxfjb44-stack-awsebrdsdatabase-f2ocmocryc5g.celswdmxhcr1.eu-west-1.rds.amazonaws.com:5432/ebdb"
         }
       ]
     }
