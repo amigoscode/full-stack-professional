@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MyCalculatorService } from '../services/my-calculator.service';
 
 @Component({
   selector: 'app-my-first-component',
@@ -6,22 +7,27 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./my-first.component.scss']
 })
 export class MyFirstComponent {
+  value1 = 0;
+  value2 = 0;
+  result = 0;
 
-  @Input()
-  inputValue: string = 'Hello';
-  @Output()
-  childClicked: EventEmitter<void> = new EventEmitter<void>();
+  constructor(
+    private readonly calculator: MyCalculatorService
+  ) {}
 
-  @Output()
-  elementCreated: EventEmitter<string> = new EventEmitter<string>();
-  displayMsg = false;
-  msgList: Array<string> = [];
+  sum() {
+    this.result = this.calculator.sum(this.value1, this.value2);
+  }
 
-  clickMe(): void {
-    this.msgList.push(this.inputValue);
-    console.log(this.msgList);
-    this.childClicked.emit();
-    this.elementCreated.emit(this.inputValue);
-    this.inputValue = '';
+  sub() {
+    this.result = this.calculator.sub(this.value1, this.value2);
+  }
+
+  multiply() {
+    this.result = this.calculator.multiply(this.value1, this.value2);
+  }
+
+  divide() {
+    this.result = this.calculator.divide(this.value1, this.value2);
   }
 }
