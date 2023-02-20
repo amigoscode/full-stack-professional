@@ -3,29 +3,44 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MyFirstComponent } from './my-first-component/my-first.component';
 import { FormsModule } from '@angular/forms';
-import { MyCalculatorService } from './services/my-calculator.service';
-import { Page1Component } from './pages/page1/page1.component';
-import { Page2Component } from './pages/page2/page2.component';
-import { Page3Component } from './pages/page3/page3.component';
+import {InputTextModule} from 'primeng/inputtext';
+import { CustomerComponent } from './components/customer/customer.component';
+import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
+import { AvatarModule } from 'primeng/avatar';
+import { MenuItemComponent } from './components/menu-item/menu-item.component';
+import { HeaderBarComponent } from './components/header-bar/header-bar.component';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { MenuModule } from 'primeng/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidebarModule } from 'primeng/sidebar';
+import { ManageCustomerComponent } from './components/manage-customer/manage-customer.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyFirstComponent,
-    Page1Component,
-    Page2Component,
-    Page3Component
+    CustomerComponent,
+    MenuBarComponent,
+    MenuItemComponent,
+    HeaderBarComponent,
+    ManageCustomerComponent,
+    LoginComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
-  providers: [
-    MyCalculatorService
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        InputTextModule,
+        AvatarModule,
+        ButtonModule,
+        RippleModule,
+        MenuModule,
+        SidebarModule
+    ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,13 @@
+div {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  &:hover {
+    background-color: #4299e1;
+    color: #fff;
+    cursor: pointer;
+  }
+  i {
+    padding-right: 10px;
+  }
+}
