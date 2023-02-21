@@ -25,7 +25,11 @@
       >
       </button>
       <div>
-        customers will be displayed here
+        <app-customer-card
+          *ngFor="let customer of customers; let index = index"
+          [customer]="customer"
+          [customerIndex]="index"
+        ></app-customer-card>
       </div>
     </div>
   </div>
