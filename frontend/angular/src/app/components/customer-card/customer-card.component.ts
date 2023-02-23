@@ -15,6 +15,8 @@ export class CustomerCardComponent {
 
   @Output()
   delete: EventEmitter<CustomerDTO> = new EventEmitter<CustomerDTO>();
+  @Output()
+  update: EventEmitter<CustomerDTO> = new EventEmitter<CustomerDTO>();
 
   get customerImage(): string {
     const gender = this.customer.gender === 'MALE' ? 'men' : 'women';
@@ -23,5 +25,8 @@ export class CustomerCardComponent {
 
   onDelete() {
     this.delete.emit(this.customer);
+  }
+  onUpdate() {
+    this.update.emit(this.customer);
   }
 }

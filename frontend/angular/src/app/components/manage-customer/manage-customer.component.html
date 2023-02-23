@@ -1,5 +1,5 @@
 <div>
-  <h2>Title here</h2>
+  <h2>{{ operation === 'update' ? 'Update Customer' : 'New customer' }}</h2>
   <div class="field">
     <label for="firstname">Name</label>
     <input
@@ -33,7 +33,7 @@
       class="w-full"
     >
   </div>
-  <div class="field">
+  <div class="field" *ngIf="operation === 'create'">
     <label for="password">Password</label>
     <input
       [(ngModel)]="customer.password"
@@ -44,7 +44,7 @@
       class="w-full"
     >
   </div>
-  <div class="field">
+  <div class="field" *ngIf="operation === 'create'">
     <label for="gender">Gender</label>
     <select
       [(ngModel)]="customer.gender"
@@ -64,6 +64,7 @@
     class="w-full"
   ></button>
   <button
+    (click)="onCancel()"
     pButton
     label="Cancel"
     class="w-full p-button-outlined p-button-danger mt-2"
