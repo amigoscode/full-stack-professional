@@ -24,7 +24,8 @@ import { CustomerCardComponent } from './components/customer-card/customer-card.
 import { CardModule } from 'primeng/card';
 import { BadgeModule } from 'primeng/badge';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -37,30 +38,32 @@ import { MessageService } from 'primeng/api';
     LoginComponent,
     CustomerCardComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        FormsModule,
-        InputTextModule,
-        AvatarModule,
-        ButtonModule,
-        RippleModule,
-        MenuModule,
-        SidebarModule,
-        HttpClientModule,
-        MessageModule,
-        CardModule,
-        BadgeModule,
-        ToastModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FormsModule,
+    InputTextModule,
+    AvatarModule,
+    ButtonModule,
+    RippleModule,
+    MenuModule,
+    SidebarModule,
+    HttpClientModule,
+    MessageModule,
+    CardModule,
+    BadgeModule,
+    ToastModule,
+    ConfirmDialogModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true
     },
-    MessageService
+    MessageService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

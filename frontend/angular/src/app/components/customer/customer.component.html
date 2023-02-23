@@ -32,10 +32,19 @@
           *ngFor="let customer of customers; let index = index"
           [customer]="customer"
           [customerIndex]="index"
+          (delete)="deleteCustomer($event)"
         ></app-customer-card>
       </div>
     </div>
   </div>
 </div>
 
+<p-confirmDialog
+  header="Confirmation"
+  icon="pi pi-exclamation-triangle"
+  acceptLabel="Delete"
+  acceptButtonStyleClass="p-button-danger"
+  acceptIcon="pi pi-trash"
+  rejectLabel="Cancel"
+></p-confirmDialog>
 <p-toast position="bottom-center"></p-toast>
