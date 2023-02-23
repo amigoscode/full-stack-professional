@@ -3,6 +3,7 @@
   <div class="field">
     <label for="firstname">Name</label>
     <input
+      [(ngModel)]="customer.name"
       id="firstname"
       pInputText
       placeholder="Jane"
@@ -13,6 +14,7 @@
   <div class="field">
     <label for="email">Email</label>
     <input
+      [(ngModel)]="customer.email"
       id="email"
       pInputText
       placeholder="Jane@amigoscode.com"
@@ -23,6 +25,7 @@
   <div class="field">
     <label for="age">Age</label>
     <input
+      [(ngModel)]="customer.age"
       id="age"
       pInputText
       placeholder="34"
@@ -33,6 +36,7 @@
   <div class="field">
     <label for="password">Password</label>
     <input
+      [(ngModel)]="customer.password"
       id="password"
       pInputText
       placeholder="Password"
@@ -43,15 +47,18 @@
   <div class="field">
     <label for="gender">Gender</label>
     <select
+      [(ngModel)]="customer.gender"
       class="p-dropdown w-full custom-select"
       id="gender"
     >
-      <option>Select an option</option>
-      <option>MALE</option>
-      <option>FEMALE</option>
+      <option value="">Select an option</option>
+      <option value="MALE">MALE</option>
+      <option value="FEMALE">FEMALE</option>
     </select>
   </div>
   <button
+    [disabled]="!isCustomerValid"
+    (click)="onSubmit()"
     pButton
     label="Submit"
     class="w-full"

@@ -13,4 +13,9 @@ export class CustomerCardComponent {
   @Input()
   customerIndex = 0;
 
+  get customerImage(): string {
+    const gender = this.customer.gender === 'MALE' ? 'men' : 'women';
+    return `https://randomuser.me/api/portraits/${gender}/${this.customerIndex}.jpg`;
+  }
+
 }

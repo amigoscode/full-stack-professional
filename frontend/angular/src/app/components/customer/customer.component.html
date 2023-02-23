@@ -4,7 +4,10 @@
   [transitionOptions]="'300ms cubic-bezier(0, 0, 0.2, 1)'"
   styleClass="p-sidebar-lg"
 >
-  <app-manage-customer></app-manage-customer>
+  <app-manage-customer
+    [customer]="customer"
+    (submit)="save($event)"
+  ></app-manage-customer>
 </p-sidebar>
 
 <div class="flex align-items-stretch" style="height: 99vh;">
@@ -24,7 +27,7 @@
         (click)="display = true"
       >
       </button>
-      <div>
+      <div class="flex justify-content-center align-items-center flex-wrap gap-5 mt-4">
         <app-customer-card
           *ngFor="let customer of customers; let index = index"
           [customer]="customer"
@@ -34,3 +37,5 @@
     </div>
   </div>
 </div>
+
+<p-toast position="bottom-center"></p-toast>
