@@ -1,0 +1,17 @@
+.right-container {
+  background-image: linear-gradient(to right, #2b6cb0, #6b46c1);
+  .background {
+    object-fit: scale-down;
+    height: auto;
+    max-width: 100%;
+  }
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+.custom-select {
+  padding: 0.75rem 0.75rem;
+  border: 1px solid #ced4da;
+}
