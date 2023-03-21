@@ -3,6 +3,13 @@ server:
   error:
     include-message: always
 
+aws:
+  region: eu-west-1
+  s3:
+    mock: false
+    buckets:
+      customer: amigoscode-4321
+
 cors:
   allowed-origins: "*"
   allowed-methods: "*"
