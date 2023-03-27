@@ -61,3 +61,22 @@ export const login = async (usernameAndPassword) => {
         throw e;
     }
 }
+
+export const uploadCustomerProfilePicture = async (id, formData) => {
+    try {
+        return await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${id}/profile-image`,
+            formData,
+            {
+                ...getAuthConfig(),
+                "Content-Type": "multipart/form-data"
+            }
+        )
+    } catch (e) {
+        throw e;
+    }
+}
+
+export const customerProfilePictureUrl = id => {
+    return `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${id}/profile-image`
+}
