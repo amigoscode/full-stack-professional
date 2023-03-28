@@ -1,6 +1,6 @@
 # Full Stack Professional
 
-Enrol [here](https://amigoscode.com/courses/full-stack-professional with over *50 Hours* of Content with Plenty of Exercises
+Enrol [here](https://amigoscode.com/courses/full-stack-professional) with over *50 Hours* of Content with Plenty of Exercises
 
 ![Curriculum](https://user-images.githubusercontent.com/40702606/228275106-73076517-ff4f-40e0-a993-4d05d5a2ea77.png)
 
