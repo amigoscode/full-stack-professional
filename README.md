@@ -25,5 +25,6 @@ Over the next three months you will learn how to craft stunning, responsive fron
 - ✅ Login/Registration systems for user management
 - ✅ TypeScript for type-safe, scalable code
 - ✅ Angular for powerful, responsive front-end interfaces
+
 🎁 Bonus 6-Month IntelliJ IDEA Ultimate license worth 117.83$
 
