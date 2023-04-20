@@ -135,6 +135,11 @@
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.amazonaws.secretsmanager</groupId>
+            <artifactId>aws-secretsmanager-jdbc</artifactId>
+            <version>1.0.8</version>
+        </dependency>
     </dependencies>
 
     <build>
