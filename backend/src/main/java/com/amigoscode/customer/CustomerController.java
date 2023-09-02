@@ -34,8 +34,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<?> registerCustomer(
-            @RequestBody CustomerRegistrationRequest request) {
+    public ResponseEntity<?> registerCustomer(@RequestBody CustomerRegistrationRequest request) {
         customerService.addCustomer(request);
         String jwtToken = jwtUtil.issueToken(request.email(), "ROLE_USER");
         return ResponseEntity.ok()
@@ -44,34 +43,22 @@ public class CustomerController {
     }
 
     @DeleteMapping("{customerId}")
-    public void deleteCustomer(
-            @PathVariable("customerId") Integer customerId) {
+    public void deleteCustomer(@PathVariable("customerId") Integer customerId) {
         customerService.deleteCustomerById(customerId);
     }
 
     @PutMapping("{customerId}")
-    public void updateCustomer(
-            @PathVariable("customerId") Integer customerId,
-            @RequestBody CustomerUpdateRequest updateRequest) {
+    public void updateCustomer(@PathVariable("customerId") Integer customerId, @RequestBody CustomerUpdateRequest updateRequest) {
         customerService.updateCustomer(customerId, updateRequest);
     }
 
-    @PostMapping(
-            value = "{customerId}/profile-image",
-            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
-    )
-    public void uploadCustomerProfileImage(
-            @PathVariable("customerId") Integer customerId,
-            @RequestParam("file") MultipartFile file) {
+    @PostMapping(value = "{customerId}/profile-image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void uploadCustomerProfileImage(@PathVariable("customerId") Integer customerId, @RequestParam("file") MultipartFile file) {
         customerService.uploadCustomerProfileImage(customerId, file);
     }
 
-    @GetMapping(
-            value = "{customerId}/profile-image",
-            produces = MediaType.IMAGE_JPEG_VALUE
-    )
-    public byte[] getCustomerProfileImage(
-            @PathVariable("customerId") Integer customerId) {
+    @GetMapping(value = "{customerId}/profile-image", produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] getCustomerProfileImage(@PathVariable("customerId") Integer customerId) {
         return customerService.getCustomerProfileImage(customerId);
     }
 

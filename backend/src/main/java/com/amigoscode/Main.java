@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Random;
-import java.util.UUID;
 
 @SpringBootApplication
 public class Main {
@@ -61,7 +60,7 @@ public class Main {
         Customer customer = new Customer(
                 firstName +  " " + lastName,
                 email,
-                passwordEncoder.encode("password"),
+                passwordEncoder.encode("pass12345"),
                 age,
                 gender);
         customerRepository.save(customer);

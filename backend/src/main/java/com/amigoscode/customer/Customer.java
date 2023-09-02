@@ -5,7 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -37,33 +36,21 @@ public class Customer implements UserDetails {
             generator = "customer_id_seq"
     )
     private Integer id;
-    @Column(
-            nullable = false
-    )
+    @Column(nullable = false)
     private String name;
-    @Column(
-            nullable = false
-    )
+    @Column(nullable = false)
     private String email;
-    @Column(
-            nullable = false
-    )
+    @Column(nullable = false)
     private Integer age;
 
-    @Column(
-            nullable = false
-    )
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(
-            nullable = false
-    )
+    @Column(nullable = false)
     private String password;
 
-    @Column(
-            unique = true
-    )
+    @Column(unique = true)
     private String profileImageId;
 
     public Customer() {
@@ -90,8 +77,8 @@ public class Customer implements UserDetails {
                     Integer age,
                     Gender gender,
                     String profileImageId) {
-       this(id, name, email, password, age, gender);
-       this.profileImageId = profileImageId;
+        this(id, name, email, password, age, gender);
+        this.profileImageId = profileImageId;
     }
 
     public Customer(String name,
