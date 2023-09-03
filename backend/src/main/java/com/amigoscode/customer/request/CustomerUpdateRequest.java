@@ -1,4 +1,4 @@
-package com.amigoscode.customer;
+package com.amigoscode.customer.request;
 
 public record CustomerUpdateRequest(
         String name,

@@ -1,4 +1,4 @@
-package com.amigoscode.auth;
+package com.amigoscode.auth.request;
 
 public record AuthenticationRequest(
         String username,

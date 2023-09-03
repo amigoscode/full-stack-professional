@@ -1,6 +1,6 @@
 package com.amigoscode.jwt;
 
-import com.amigoscode.customer.CustomerUserDetailsService;
+import com.amigoscode.customer.service.CustomerUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

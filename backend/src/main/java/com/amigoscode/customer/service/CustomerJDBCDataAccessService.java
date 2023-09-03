@@ -1,5 +1,8 @@
-package com.amigoscode.customer;
+package com.amigoscode.customer.service;
 
+import com.amigoscode.customer.entity.Customer;
+import com.amigoscode.customer.dto.CustomerDao;
+import com.amigoscode.customer.dto.CustomerRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

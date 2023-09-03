@@ -1,5 +1,7 @@
-package com.amigoscode.customer;
+package com.amigoscode.customer.dto;
 
+import com.amigoscode.customer.request.Gender;
+import com.amigoscode.customer.entity.Customer;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 

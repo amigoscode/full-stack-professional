@@ -1,5 +1,8 @@
-package com.amigoscode.customer;
+package com.amigoscode.customer.service;
 
+import com.amigoscode.customer.entity.Customer;
+import com.amigoscode.customer.dto.CustomerDao;
+import com.amigoscode.customer.repository.CustomerRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;

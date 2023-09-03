@@ -1,15 +1,15 @@
-package com.amigoscode.auth;
+package com.amigoscode.auth.service;
 
-import com.amigoscode.customer.Customer;
-import com.amigoscode.customer.CustomerDTO;
-import com.amigoscode.customer.CustomerDTOMapper;
+import com.amigoscode.auth.request.AuthenticationRequest;
+import com.amigoscode.auth.response.AuthenticationResponse;
+import com.amigoscode.customer.entity.Customer;
+import com.amigoscode.customer.dto.CustomerDTO;
+import com.amigoscode.customer.dto.CustomerDTOMapper;
 import com.amigoscode.jwt.JWTUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
-import java.lang.reflect.InvocationTargetException;
 
 @Service
 public class AuthenticationService {

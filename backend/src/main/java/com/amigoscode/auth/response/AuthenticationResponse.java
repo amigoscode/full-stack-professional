@@ -1,6 +1,6 @@
-package com.amigoscode.auth;
+package com.amigoscode.auth.response;
 
-import com.amigoscode.customer.CustomerDTO;
+import com.amigoscode.customer.dto.CustomerDTO;
 
 public record AuthenticationResponse (
         String token,

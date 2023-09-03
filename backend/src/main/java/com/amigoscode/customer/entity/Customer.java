@@ -1,5 +1,6 @@
-package com.amigoscode.customer;
+package com.amigoscode.customer.entity;
 
+import com.amigoscode.customer.request.Gender;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

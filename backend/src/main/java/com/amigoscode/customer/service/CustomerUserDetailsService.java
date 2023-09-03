@@ -1,5 +1,6 @@
-package com.amigoscode.customer;
+package com.amigoscode.customer.service;
 
+import com.amigoscode.customer.dto.CustomerDao;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

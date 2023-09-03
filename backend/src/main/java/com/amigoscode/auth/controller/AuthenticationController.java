@@ -1,5 +1,8 @@
-package com.amigoscode.auth;
+package com.amigoscode.auth.controller;
 
+import com.amigoscode.auth.request.AuthenticationRequest;
+import com.amigoscode.auth.response.AuthenticationResponse;
+import com.amigoscode.auth.service.AuthenticationService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

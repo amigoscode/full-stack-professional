@@ -1,5 +1,13 @@
 package com.amigoscode.customer;
 
+import com.amigoscode.customer.dto.CustomerDTO;
+import com.amigoscode.customer.dto.CustomerDTOMapper;
+import com.amigoscode.customer.dto.CustomerDao;
+import com.amigoscode.customer.entity.Customer;
+import com.amigoscode.customer.request.CustomerRegistrationRequest;
+import com.amigoscode.customer.request.CustomerUpdateRequest;
+import com.amigoscode.customer.request.Gender;
+import com.amigoscode.customer.service.CustomerService;
 import com.amigoscode.exception.DuplicateResourceException;
 import com.amigoscode.exception.RequestValidationException;
 import com.amigoscode.exception.ResourceNotFoundException;

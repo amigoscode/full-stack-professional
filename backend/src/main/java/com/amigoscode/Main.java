@@ -1,8 +1,8 @@
 package com.amigoscode;
 
-import com.amigoscode.customer.Customer;
-import com.amigoscode.customer.CustomerRepository;
-import com.amigoscode.customer.Gender;
+import com.amigoscode.customer.entity.Customer;
+import com.amigoscode.customer.repository.CustomerRepository;
+import com.amigoscode.customer.request.Gender;
 import com.amigoscode.s3.S3Buckets;
 import com.amigoscode.s3.S3Service;
 import com.github.javafaker.Faker;
@@ -39,7 +39,6 @@ public class Main {
                 "foo/bar/jamila",
                 "Hello World".getBytes()
         );
-
         byte[] obj = s3Service.getObject(
                 s3Buckets.getCustomer(),
                 "foo/bar/jamila"
@@ -56,15 +55,14 @@ public class Main {
         String lastName = name.lastName();
         int age = random.nextInt(16, 99);
         Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
-        String email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@amigoscode.com";
+        String email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@gmail.com";
         Customer customer = new Customer(
                 firstName +  " " + lastName,
                 email,
-                passwordEncoder.encode("pass12345"),
+                passwordEncoder.encode("password"),
                 age,
                 gender);
         customerRepository.save(customer);
         System.out.println(email);
     }
-
 }
