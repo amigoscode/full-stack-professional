@@ -8,14 +8,14 @@ import org.springframework.security.authentication.InsufficientAuthenticationExc
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.naming.NotContextException;
 import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class DefaultExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ApiError> handleException(ResourceNotFoundException e,
-                                                    HttpServletRequest request) {
+    public ResponseEntity<ApiError> handleException(ResourceNotFoundException e, HttpServletRequest request) {
         ApiError apiError = new ApiError(
                 request.getRequestURI(),
                 e.getMessage(),
@@ -27,8 +27,7 @@ public class DefaultExceptionHandler {
     }
 
     @ExceptionHandler(InsufficientAuthenticationException.class)
-    public ResponseEntity<ApiError> handleException(InsufficientAuthenticationException e,
-                                                    HttpServletRequest request) {
+    public ResponseEntity<ApiError> handleException(InsufficientAuthenticationException e, HttpServletRequest request) {
         ApiError apiError = new ApiError(
                 request.getRequestURI(),
                 e.getMessage(),
@@ -40,8 +39,7 @@ public class DefaultExceptionHandler {
     }
 
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<ApiError> handleException(BadCredentialsException e,
-                                                    HttpServletRequest request) {
+    public ResponseEntity<ApiError> handleException(BadCredentialsException e, HttpServletRequest request) {
         ApiError apiError = new ApiError(
                 request.getRequestURI(),
                 e.getMessage(),
@@ -53,8 +51,7 @@ public class DefaultExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiError> handleException(Exception e,
-                                                    HttpServletRequest request) {
+    public ResponseEntity<ApiError> handleException(Exception e, HttpServletRequest request) {
         ApiError apiError = new ApiError(
                 request.getRequestURI(),
                 e.getMessage(),
@@ -65,4 +62,14 @@ public class DefaultExceptionHandler {
         return new ResponseEntity<>(apiError, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(NotContextException.class)
+    public ResponseEntity<ApiError> handleException(NotContextException exception, HttpServletRequest request) {
+        ApiError apiError = new ApiError(
+                request.getRequestURI(),
+                exception.getMessage(),
+                HttpStatus.NO_CONTENT.value(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(apiError, HttpStatus.NO_CONTENT);
+    }
 }

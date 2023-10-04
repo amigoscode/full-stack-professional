@@ -11,6 +11,7 @@ import com.amigoscode.exception.RequestValidationException;
 import com.amigoscode.exception.ResourceNotFoundException;
 import com.amigoscode.s3.S3Buckets;
 import com.amigoscode.s3.S3Service;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class CustomerService {
 
@@ -139,6 +141,7 @@ public class CustomerService {
                     file.getBytes()
             );
         } catch (IOException e) {
+            log.info("==========Failed Uploading Image============");
             throw new RuntimeException("failed to upload profile image", e);
         }
         customerDao.updateCustomerProfileImageId(profileImageId, customerId);

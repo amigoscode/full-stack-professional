@@ -25,15 +25,13 @@ public class CustomerController {
         this.customerService = customerService;
         this.jwtUtil = jwtUtil;
     }
-
     @GetMapping
     public List<CustomerDTO> getCustomers() {
         return customerService.getAllCustomers();
     }
 
     @GetMapping("{customerId}")
-    public CustomerDTO getCustomer(
-            @PathVariable("customerId") Integer customerId) {
+    public CustomerDTO getCustomer(@PathVariable("customerId") Integer customerId) {
         return customerService.getCustomer(customerId);
     }
 

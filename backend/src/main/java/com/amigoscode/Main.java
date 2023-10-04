@@ -25,10 +25,10 @@ public class Main {
     @Bean
     CommandLineRunner runner(
             CustomerRepository customerRepository,
-            PasswordEncoder passwordEncoder) {
+            PasswordEncoder passwordEncoder, S3Service s3Service) {
         return args -> {
             createRandomCustomer(customerRepository, passwordEncoder);
-            // testBucketUploadAndDownload(s3Service, s3Buckets);
+            //testBucketUploadAndDownload(s3Service, s3Buckets);
         };
     }
 

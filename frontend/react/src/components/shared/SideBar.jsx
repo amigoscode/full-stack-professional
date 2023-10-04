@@ -26,16 +26,18 @@ import {
     FiBell,
     FiChevronDown,
     FiHome,
+    FiInfo,
     FiMenu,
     FiSettings,
     FiUsers
 } from 'react-icons/fi';
 import {useAuth} from "../context/AuthContext.jsx";
-
 const LinkItems = [
     {name: 'Home', route: '/dashboard', icon: FiHome},
     {name: 'Customers', route: '/dashboard/customers',  icon: FiUsers},
+    {name: 'About', route: '/dashboard/about', icon: FiInfo},
     {name: 'Settings', route: '/dashboard/settings', icon: FiSettings},
+    {name: 'Career', route: '/dashboard/career', icon: FiBell}
 ];
 
 export default function SidebarWithHeader({children}) {
@@ -82,10 +84,11 @@ const SidebarContent = ({onClose, ...rest}) => {
                 <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold" mb={5}>
                     Dashboard
                 </Text>
+                
                 <Image
                     borderRadius='full'
                     boxSize='75px'
-                    src='https://user-images.githubusercontent.com/40702606/210880158-e7d698c2-b19a-4057-b415-09f48a746753.png'
+                    src='https://imgs.search.brave.com/7oGKQ70hWrsHaVPzv1ZKuburfaNjOgVgIHe1DbQDBrI/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2M2LzUy/LzU1L2M2NTI1NTI5/OWNmMGJmMzY5YTNi/MTkyYjIwNGU1MDdk/LS10ZWNoLWhhY2tz/LW5pbmphcy5qcGc'
                     alt='Amigoscode'
                 />
                 <CloseButton display={{base: 'flex', md: 'none'}} onClick={onClose}/>
