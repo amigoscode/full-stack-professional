@@ -1,14 +1,6 @@
 import SidebarWithHeader from "./components/shared/SideBar.jsx";
 import {
-  Grid,
-  GridItem,
   IconButton,
-  Text,
-  Icon,
-  Card,
-  Tab,
-  MenuGroup,
-  Img,
 } from "@chakra-ui/react";
 import {
   AddIcon,
@@ -48,8 +40,7 @@ const Home = () => {
             onClick={() => {
               const newWindow = window.open();
               newWindow.opener = null;
-              newWindow.location.href =
-                "https://github.com/FearLessXT/spring-security";
+              newWindow.location.href = "https://github.com/FearLessXT/spring-security";
             }}
           >
             New Window

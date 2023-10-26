@@ -115,9 +115,7 @@ public class CustomerService {
 
         if (updateRequest.email() != null && !updateRequest.email().equals(customer.getEmail())) {
             if (customerDao.existsCustomerWithEmail(updateRequest.email())) {
-                throw new DuplicateResourceException(
-                        "email already taken"
-                );
+                throw new DuplicateResourceException("email already taken");
             }
             customer.setEmail(updateRequest.email());
             changes = true;
