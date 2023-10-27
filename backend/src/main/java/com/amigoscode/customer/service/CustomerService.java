@@ -55,20 +55,15 @@ public class CustomerService {
     public CustomerDTO getCustomer(Integer id) {
         return customerDao.selectCustomerById(id)
                 .map(customerDTOMapper)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "customer with id [%s] not found".formatted(id)
-                ));
+                .orElseThrow(() -> new ResourceNotFoundException("customer with id [%s] not found".formatted(id)));
     }
 
     public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
         // check if email exists
         String email = customerRegistrationRequest.email();
         if (customerDao.existsCustomerWithEmail(email)) {
-            throw new DuplicateResourceException(
-                    "email already taken"
-            );
+            throw new DuplicateResourceException("email already taken");
         }
-
         // add
         Customer customer = new Customer(
                 customerRegistrationRequest.name(),
@@ -87,9 +82,7 @@ public class CustomerService {
 
     private void checkIfCustomerExistsOrThrow(Integer customerId) {
         if (!customerDao.existsCustomerById(customerId)) {
-            throw new ResourceNotFoundException(
-                    "customer with id [%s] not found".formatted(customerId)
-            );
+            throw new ResourceNotFoundException("customer with id [%s] not found".formatted(customerId));
         }
     }
 
@@ -97,9 +90,7 @@ public class CustomerService {
                                CustomerUpdateRequest updateRequest) {
         // TODO: for JPA use .getReferenceById(customerId) as it does does not bring object into memory and instead a reference
         Customer customer = customerDao.selectCustomerById(customerId)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "customer with id [%s] not found".formatted(customerId)
-                ));
+                .orElseThrow(() -> new ResourceNotFoundException("customer with id [%s] not found".formatted(customerId)));
 
         boolean changes = false;
 
