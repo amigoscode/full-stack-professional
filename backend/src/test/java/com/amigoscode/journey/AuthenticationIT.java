@@ -1,10 +1,10 @@
 package com.amigoscode.journey;
 
-import com.amigoscode.auth.AuthenticationRequest;
-import com.amigoscode.auth.AuthenticationResponse;
-import com.amigoscode.customer.CustomerDTO;
-import com.amigoscode.customer.CustomerRegistrationRequest;
-import com.amigoscode.customer.Gender;
+import com.amigoscode.auth.request.AuthenticationRequest;
+import com.amigoscode.auth.response.AuthenticationResponse;
+import com.amigoscode.customer.dto.CustomerDTO;
+import com.amigoscode.customer.request.CustomerRegistrationRequest;
+import com.amigoscode.customer.request.Gender;
 import com.amigoscode.jwt.JWTUtil;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;

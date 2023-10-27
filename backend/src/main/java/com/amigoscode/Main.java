@@ -1,8 +1,8 @@
 package com.amigoscode;
 
-import com.amigoscode.customer.Customer;
-import com.amigoscode.customer.CustomerRepository;
-import com.amigoscode.customer.Gender;
+import com.amigoscode.customer.entity.Customer;
+import com.amigoscode.customer.repository.CustomerRepository;
+import com.amigoscode.customer.request.Gender;
 import com.amigoscode.s3.S3Buckets;
 import com.amigoscode.s3.S3Service;
 import com.github.javafaker.Faker;
@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Random;
-import java.util.UUID;
 
 @SpringBootApplication
 public class Main {
@@ -26,10 +25,10 @@ public class Main {
     @Bean
     CommandLineRunner runner(
             CustomerRepository customerRepository,
-            PasswordEncoder passwordEncoder) {
+            PasswordEncoder passwordEncoder, S3Service s3Service) {
         return args -> {
             createRandomCustomer(customerRepository, passwordEncoder);
-            // testBucketUploadAndDownload(s3Service, s3Buckets);
+            //testBucketUploadAndDownload(s3Service, s3Buckets);
         };
     }
 
@@ -40,7 +39,6 @@ public class Main {
                 "foo/bar/jamila",
                 "Hello World".getBytes()
         );
-
         byte[] obj = s3Service.getObject(
                 s3Buckets.getCustomer(),
                 "foo/bar/jamila"
@@ -57,7 +55,7 @@ public class Main {
         String lastName = name.lastName();
         int age = random.nextInt(16, 99);
         Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
-        String email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@amigoscode.com";
+        String email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@gmail.com";
         Customer customer = new Customer(
                 firstName +  " " + lastName,
                 email,
@@ -67,5 +65,4 @@ public class Main {
         customerRepository.save(customer);
         System.out.println(email);
     }
-
 }
