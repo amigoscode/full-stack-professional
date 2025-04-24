@@ -9,6 +9,12 @@ cors:
   allowed-headers: "*"
   exposed-headers: "*"
 
+aws:
+  region: us-east-1
+  s3:
+    buckets:
+      customer: fullstack-amgiocode-customer-test
+
 management:
   endpoints:
     web:

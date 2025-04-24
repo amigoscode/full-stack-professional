@@ -13,30 +13,30 @@ services:
     networks:
       - db
     restart: unless-stopped
-  amigoscode-api:
-    container_name: amigoscode-api
-    image: amigoscode/amigoscode-api
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/customer
-    ports:
-      - "8088:8080"
-    networks:
-      - db
-    depends_on:
-      - db
-    restart: unless-stopped
-  amigoscode-react:
-    container_name: amigoscode-react
-    image: amigoscode/amigoscode-react
-    build:
-      context: frontend/react
-      args:
-        api_base_url: http://localhost:8088
-    ports:
-      - "3000:5173"
-    depends_on:
-      - amigoscode-api
-    restart: unless-stopped
+#  amigoscode-api:
+#    container_name: amigoscode-api
+#    image: amigoscode/amigoscode-api
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/customer
+#    ports:
+#      - "8088:8080"
+#    networks:
+#      - db
+#    depends_on:
+#      - db
+#    restart: unless-stopped
+#  amigoscode-react:
+#    container_name: amigoscode-react
+#    image: amigoscode/amigoscode-react
+#    build:
+#      context: frontend/react
+#      args:
+#        api_base_url: http://localhost:8088
+#    ports:
+#      - "3000:5173"
+#    depends_on:
+#      - amigoscode-api
+#    restart: unless-stopped
 
 networks:
   db:
