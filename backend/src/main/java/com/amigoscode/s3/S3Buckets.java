@@ -1,0 +1,4 @@
+package com.amigoscode.s3;
+
+public class S3Buckets {
+}
