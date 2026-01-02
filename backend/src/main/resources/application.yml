@@ -9,6 +9,12 @@ cors:
   allowed-headers: "*"
   exposed-headers: "*"
 
+aws:
+  region: us-east-2
+  s3:
+    buckets:
+      customer: fs-alvaro-customer-test
+
 management:
   endpoints:
     web:
