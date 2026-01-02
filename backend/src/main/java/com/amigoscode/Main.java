@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Random;
 import java.util.UUID;
 
@@ -30,22 +29,24 @@ public class Main {
             PasswordEncoder passwordEncoder) {
         return args -> {
             createRandomCustomer(customerRepository, passwordEncoder);
-//            testBucketUploadAndDownload(s3Service, s3Buckets);
+            // testBucketUploadAndDownload(s3Service, s3Buckets);
         };
     }
 
-    private static void testBucketUploadAndDownload(S3Service s3Service, S3Buckets s3Buckets) {
+    private static void testBucketUploadAndDownload(S3Service s3Service,
+                                                    S3Buckets s3Buckets) {
         s3Service.putObject(
                 s3Buckets.getCustomer(),
-                "foo",
+                "foo/bar/jamila",
                 "Hello World".getBytes()
         );
+
         byte[] obj = s3Service.getObject(
                 s3Buckets.getCustomer(),
-                "foo"
-                );
+                "foo/bar/jamila"
+        );
 
-        System.out.println("Horray: " + new String(obj));
+        System.out.println("Hooray: " + new String(obj));
     }
 
     private static void createRandomCustomer(CustomerRepository customerRepository, PasswordEncoder passwordEncoder) {

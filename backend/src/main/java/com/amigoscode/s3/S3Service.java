@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.GetObjectAclRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
@@ -16,12 +15,11 @@ public class S3Service {
 
     private final S3Client s3;
 
-    public S3Service (S3Client s3)
-    {
+    public S3Service(S3Client s3) {
         this.s3 = s3;
     }
-    public void putObject(String bucketName, String key, byte[] file)
-    {
+
+    public void putObject(String bucketName, String key, byte[] file) {
         PutObjectRequest objectRequest = PutObjectRequest.builder()
                 .bucket(bucketName)
                 .key(key)
@@ -29,8 +27,7 @@ public class S3Service {
         s3.putObject(objectRequest, RequestBody.fromBytes(file));
     }
 
-    public byte[] getObject(String bucketName, String key)
-    {
+    public byte[] getObject(String bucketName, String key) {
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
                 .bucket(bucketName)
                 .key(key)
@@ -44,7 +41,5 @@ public class S3Service {
             throw new RuntimeException(e);
         }
 
-
     }
-
 }
